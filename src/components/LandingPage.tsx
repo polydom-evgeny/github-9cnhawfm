@@ -26,6 +26,7 @@ export function LandingPage() {
     'parsing' | 'agentCreation' | null
   >(null);
   const [agentCreationStarted, setAgentCreationStarted] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
 
   const createAgent = async () => {
     try {
@@ -34,6 +35,7 @@ export function LandingPage() {
       if (!parserResult || !selectedPlace) {
         setProcessingError(true);
         setErrorContext('agentCreation');
+        setIsLoading(false);
         return;
       }
 
@@ -56,6 +58,7 @@ export function LandingPage() {
       setSetupComplete(true);
       setProcessingError(false);
       setErrorContext(null);
+      setIsLoading(false);
     } catch (error) {
       console.error('Error creating agent:', error);
       setIsSettingUp(false);
@@ -63,6 +66,7 @@ export function LandingPage() {
       setProcessingError(true);
       setErrorContext('agentCreation');
       setAgentCreationStarted(false);
+      setIsLoading(false);
     }
   };
 
@@ -70,6 +74,7 @@ export function LandingPage() {
     if (parserResult && !agentCreationStarted) {
       setAgentCreationStarted(true);
       setIsSettingUp(true);
+      setIsLoading(true);
       createAgent();
     }
   }, [parserResult, agentCreationStarted]);
@@ -84,6 +89,7 @@ export function LandingPage() {
     setIsParsing(true);
     setParserResult(null);
     setAgentCreationStarted(false);
+    setIsLoading(true);
 
     try {
       await parsePropertyInfo(selectedPlace, {
@@ -97,6 +103,7 @@ export function LandingPage() {
           setProcessingError(true);
           setErrorContext('parsing');
           setIsParsing(false);
+          setIsLoading(false);
         },
       });
     } catch (error) {
@@ -104,6 +111,7 @@ export function LandingPage() {
       setProcessingError(true);
       setErrorContext('parsing');
       setIsParsing(false);
+      setIsLoading(false);
     }
   };
 
@@ -114,6 +122,7 @@ export function LandingPage() {
       setProcessingError(false);
       setIsSettingUp(true);
       setAgentCreationStarted(false);
+      setIsLoading(true);
     }
   };
 
@@ -131,7 +140,7 @@ export function LandingPage() {
       </div>
 
       <div className="max-w-[520px] mx-auto px-6 py-12">
-        {!setupComplete && !isParsing && !isSettingUp && (
+        {!setupComplete && !isParsing && !isSettingUp && !isLoading && (
           <div className="text-center space-y-4">
             <h1 className="text-[32px] font-bold leading-tight">
               {t('landing.title.meet')}
@@ -142,7 +151,7 @@ export function LandingPage() {
           </div>
         )}
 
-        {!setupComplete && !isParsing && !isSettingUp && (
+        {!setupComplete && !isParsing && !isSettingUp && !isLoading && (
           <div className="mt-8 space-y-4">
             <div className="relative">
               <Search className="absolute left-4 top-1/2 h-5 w-5 -translate-y-1/2 text-gray-400" />
@@ -189,17 +198,18 @@ export function LandingPage() {
           </div>
         )}
 
-        {isParsing && (
+        {(isParsing || isLoading) && (
           <div className="mt-8">
             <ParsingLoader
               progress={parsingProgress}
               isSettingUp={isSettingUp}
               isParsingComplete={!!parserResult}
+              isLoading={isLoading}
             />
           </div>
         )}
 
-        {setupComplete && selectedPlace && (
+        {setupComplete && selectedPlace && !isLoading && (
           <div className="mt-8">
             <AIReceptionistCard
               businessName={selectedPlace.name}
