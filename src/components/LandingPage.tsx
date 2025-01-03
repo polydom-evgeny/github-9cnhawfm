@@ -182,7 +182,7 @@ export function LandingPage() {
             <Button
               variant="outline"
               fullWidth
-              onClick={() => window.open('https://polydom.ai', '_blank')}
+              onClick={() => window.open('https://cal.com/polydom/30min', '_blank')}
             >
               {t('landing.discover')}
             </Button>

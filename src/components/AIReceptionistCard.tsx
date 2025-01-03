@@ -131,7 +131,7 @@ export function AIReceptionistCard({
     <div className="flex flex-col items-center w-full">
       <div className="flex items-center justify-center gap-2 mb-2">
         <div className="w-6 h-20 flex-shrink-0">
-          <MapPin className="w-full h-full text-green-500" />
+          <MapPin className="w-full h-full text-emerald-500" />
         </div>
         <div className="text-base md:text-lg text-gray-600 truncate">
           {businessName} • {getLocation()}
@@ -140,7 +140,7 @@ export function AIReceptionistCard({
 
       <h1 className="text-center max-w-2xl text-2xl font-bold leading-tight lg:text-4xl mb-8">
         <span className="text-gray-900">{t('call.title')}</span>
-        <span className="block text-green-500">{t('call.ready')}</span>
+        <span className="block text-emerald-500">{t('call.ready')}</span>
       </h1>
 
       <div className="w-full max-w-md mx-auto bg-white rounded-lg shadow-lg px-8 pb-8">
@@ -160,7 +160,7 @@ export function AIReceptionistCard({
                       ? 'bg-gray-400 cursor-not-allowed opacity-60'
                       : isCallActive
                       ? 'bg-red-600 hover:bg-red-700'
-                      : 'bg-green-500 hover:bg-green-600'
+                      : 'bg-emerald-500 hover:bg-emerald-600'
                   } text-white`}
               >
                 <Phone className="w-5 h-5" />
@@ -168,7 +168,7 @@ export function AIReceptionistCard({
                   {isCallActive ? t('call.button.end') : t('call.button.call')}
                 </span>
                 {isEnabled && !isCallActive && (
-                  <div className="absolute -inset-1 bg-green-500/20 rounded-lg animate-pulse" />
+                  <div className="absolute -inset-1 bg-emerald-500/20 rounded-lg animate-pulse" />
                 )}
               </button>
             </div>

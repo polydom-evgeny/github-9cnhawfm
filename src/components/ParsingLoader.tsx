@@ -34,15 +34,15 @@ export function ParsingLoader({
       {!isSettingUp && typeof currentMessageData !== 'string' && currentMessageData.icon && (
         <div className="relative">
           <div className="absolute inset-0 animate-ping">
-            <currentMessageData.icon className="w-12 h-12 text-green-500 opacity-75" />
+            <currentMessageData.icon className="w-12 h-12 text-emerald-500 opacity-75" />
           </div>
-          <currentMessageData.icon className="w-12 h-12 text-green-500 relative" />
+          <currentMessageData.icon className="w-12 h-12 text-emerald-500 relative" />
         </div>
       )}
       
       <div className="w-full max-w-md h-2 bg-gray-100 rounded-full overflow-hidden">
         <div 
-          className="h-full bg-green-500 transition-all duration-300 ease-in-out"
+          className="h-full bg-emerald-500 transition-all duration-300 ease-in-out"
           style={{ width: `${displayProgress}%` }}
         />
       </div>
