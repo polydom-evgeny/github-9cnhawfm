@@ -138,7 +138,7 @@ export function AIReceptionistCard({
         </div>
       </div>
 
-      <h1 className="text-center max-w-2xl text-3xl font-bold leading-tight lg:text-5xl mb-8">
+      <h1 className="text-center max-w-2xl text-2xl font-bold leading-tight lg:text-4xl mb-8">
         <span className="text-gray-900">{t('call.title')}</span>
         <span className="block text-green-500">{t('call.ready')}</span>
       </h1>

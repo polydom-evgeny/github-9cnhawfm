@@ -122,7 +122,7 @@ export function LandingPage() {
       <div className="flex h-12 md:h-14 items-center justify-between px-4 md:px-6">
         <a href="/" className="flex items-center">
           <img
-            className="h-6 md:h-8 lg:h-12 w-auto"
+            className="h-6 md:h-8 lg:h-10 w-auto"
             alt="Polydom Logo"
             src="https://unicorn-images.b-cdn.net/a07693f5-fe0a-4d8b-9021-09fa66e8f68a?optimizer=gif"
           />
@@ -131,7 +131,7 @@ export function LandingPage() {
       </div>
 
       <div className="max-w-[520px] mx-auto px-6 py-12">
-        {!setupComplete && !isParsing && (
+        {!setupComplete && !isParsing && !isSettingUp && (
           <div className="text-center space-y-4">
             <h1 className="text-[32px] font-bold leading-tight">
               {t('landing.title.meet')}
@@ -142,7 +142,7 @@ export function LandingPage() {
           </div>
         )}
 
-        {!setupComplete && !isParsing && (
+        {!setupComplete && !isParsing && !isSettingUp && (
           <div className="mt-8 space-y-4">
             <div className="relative">
               <Search className="absolute left-4 top-1/2 h-5 w-5 -translate-y-1/2 text-gray-400" />
